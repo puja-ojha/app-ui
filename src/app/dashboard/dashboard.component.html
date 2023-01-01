@@ -1,0 +1,105 @@
+<div *ngIf="userDetails !== 'admin@gmail.com'">
+    <div class="list row">
+        <div class="col-md-12">
+            <table class="list-group-item">
+                <caption>
+                    <h2>Product List</h2>
+                </caption>
+
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <tr *ngFor="let item of products;">
+                    <td> {{ item.name }}</td>
+                    <td> {{ item.price }}</td>
+                    <td> {{ item.productImage }} </td>
+                </tr>
+
+            </table>
+        </div>
+        <div>
+            <div>
+                <button class="m-3 btn btn-sm" (click)="goBack()"> Back </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Admin -->
+<div *ngIf="userDetails === 'admin@gmail.com'">
+    <div class="list row">
+        <div class="col-md-12">
+            <table class="list-group-item">
+                <caption>
+                    <h2>Product List</h2>
+                </caption>
+
+                <th>Name</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Action</th>
+                <tr *ngFor="let item of products;">
+                    <td> {{ item.name }}</td>
+                    <td> {{ item.price }}</td>
+                    <td> {{ item.status }} </td>
+                    <td> {{ item.productImage }} </td>
+                    <td>
+                        <button class="m-3 btn btn-sm" (click)="editProduct(item)">Edit</button>
+                        <button class="m-3 btn btn-sm" (click)="deleteProduct(item)">Delete</button>
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+        <div>
+            <div>
+                <button class="m-3 btn btn-sm" (click)="goBack()"> Back </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <hr>
+    </div>
+    <section class="content">
+        <div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Product</h3>
+                </div>
+
+                <form role="form">
+                    <input type="hidden" name="prodId" #prodId>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name">Name : </label>
+                            <input type="name" class="form-control" id="name" #prodName  [(ngModel)]="product.name" required placeholder="Enter Product Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price : </label>
+                            <input type="number" class="form-control" id="price" #prodPrice [(ngModel)]="product.price" required placeholder="Product Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-status">Product Status : </label>
+                            <input class="form-control" id="status" #prodStatus [(ngModel)]="product.status" required name="status" placeholder="Product Status"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productImage">Upload Image : </label>
+                            <input type="file" #prodImage [(ngModel)]="product.productImage" id="productImage">
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <button class="btn btn-custom right btn-primary" type="button" (click)="addProduct()">Add</button>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</div>
